@@ -6,7 +6,7 @@ class Action extends Component {
     }
     render(){
         return(
-            <button onClick={this.props.handleAddTask}> {this.props.task} </button>
+            <button onClick={this.props.handleTask}> {this.props.task} </button>
         )
     }
 }
