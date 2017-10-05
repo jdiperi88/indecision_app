@@ -10,7 +10,6 @@ class IndecisionApp extends Component{
             tasks : ['joey','test','12321']
         }
         this.handleChooseTask=this.handleChooseTask.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDeleteTasks =this.handleDeleteTasks.bind(this);
         this.handleAddTask = this.handleAddTask.bind(this);
     }
