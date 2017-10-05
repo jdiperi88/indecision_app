@@ -12,6 +12,7 @@ class IndecisionApp extends Component{
         this.handleChooseTask=this.handleChooseTask.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDeleteTasks =this.handleDeleteTasks.bind(this);
+        this.handleAddTask = this.handleAddTask.bind(this);
     }
 
     handleChooseTask(){
@@ -34,14 +35,17 @@ class IndecisionApp extends Component{
     handleSubmit(){
         console.log('working23213')
     }
+    handleAddTask(task){
+        this.setState((prevState)=>{
+            return {
+                tasks: prevState.tasks.concat(task)
+            }
+        })
+    }
 
     render(){
         return(
             <div> 
-                {/* <Tasks /> */}
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" />
-                </form>
                 <Action 
                     task ="Choose Task"
                     handleTask = {this.handleChooseTask} 
@@ -51,7 +55,7 @@ class IndecisionApp extends Component{
                     handleTask = {this.handleDeleteTasks} 
                 />
                 <Tasks tasks={this.state.tasks} />
-                <AddTask />
+                <AddTask handleAddTask={this.handleAddTask} />
                 
             </div>
         );
