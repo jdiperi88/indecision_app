@@ -18,7 +18,7 @@ class IndecisionApp extends Component{
     handleChooseTask(){
         console.log(this.state.tasks);
         const randomTask = Math.floor(Math.random()*this.state.tasks.length);
-        return <p>this.state.tasks[randomTask]</p>
+        return alert(this.state.tasks[randomTask])
 
     }
 
@@ -32,10 +32,12 @@ class IndecisionApp extends Component{
         console.log(this.state.tasks);
     }
 
-    handleSubmit(){
-        console.log('working23213')
-    }
     handleAddTask(task){
+        if(!task){
+            return "Enter Valid Task!";
+        } else if(this.state.tasks.indexOf(task)>-1){
+            return "Task has already been entered!"
+        }
         this.setState((prevState)=>{
             return {
                 tasks: prevState.tasks.concat(task)
