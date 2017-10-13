@@ -7,11 +7,12 @@ class IndecisionApp extends Component{
     constructor(props){
         super(props);
         this.state = {
-            tasks : ['joey','test','12321']
+            tasks : ['hello']
         }
         this.handleChooseTask=this.handleChooseTask.bind(this);
         this.handleDeleteTasks =this.handleDeleteTasks.bind(this);
         this.handleAddTask = this.handleAddTask.bind(this);
+        this.handleDeleteTask = this.handleDeleteTask.bind(this);
     }
 
     handleChooseTask(){
@@ -22,13 +23,17 @@ class IndecisionApp extends Component{
     }
 
     handleDeleteTasks(){
-        this.setState(()=>{
-            return {   
-                tasks: []
-            
-            }
-        })
-        console.log(this.state.tasks);
+        this.setState(()=> ({tasks: []}))
+    }
+
+
+    handleDeleteTask(taskToRemove){
+        this.setState((prevState)=>{
+            tasks: prevState.tasks.filter(task =>{
+                return taskToRemove !== task;
+            });
+        });
+      
     }
 
     handleAddTask(task){
@@ -53,9 +58,12 @@ class IndecisionApp extends Component{
                 />
                 <Action 
                     task ="Delete Tasks"
-                    handleTask = {this.handleDeleteTasks} 
+                    handleTask = {this.handleDeleteTasks}
                 />
-                <Tasks tasks={this.state.tasks} />
+                <Tasks 
+                    tasks={this.state.tasks} 
+                    handleDeleteTask= {this.handleDeleteTask} 
+                />
                 <AddTask handleAddTask={this.handleAddTask} />
                 
             </div>

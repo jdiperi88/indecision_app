@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Task from './Task'
 
 class Tasks extends Component {
     constructor(props){
@@ -9,7 +10,12 @@ class Tasks extends Component {
         return (
             <div>
                 {this.props.tasks.map((task, i) => {
-                    return <p key={i}>{task}</p>
+                    return (<Task 
+                                key={i}
+                                task={task}
+                                handleDeleteTask={this.props.handleDeleteTask}
+                            />
+                    )
                 })}
             </div>
         )

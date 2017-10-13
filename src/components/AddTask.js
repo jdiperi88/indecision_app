@@ -14,11 +14,8 @@ class AddTask extends Component {
         const task = e.target.elements.task.value.trim();
         const error = this.props.handleAddTask(task);
 
-        this.setState(()=>{
-            return {
-                error
-            }
-        })
+        this.setState(()=>({error}));
+
 }
     render(){
         return(
