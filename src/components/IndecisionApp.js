@@ -29,11 +29,11 @@ class IndecisionApp extends Component{
 
     handleDeleteTask(taskToRemove){
         this.setState((prevState)=>{
-            tasks: prevState.tasks.filter(task =>{
+            return {tasks: prevState.tasks.filter(task =>{
                 return taskToRemove !== task;
-            });
+            })
+        }
         });
-      
     }
 
     handleAddTask(task){
