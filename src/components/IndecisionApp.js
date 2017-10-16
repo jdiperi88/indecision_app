@@ -7,14 +7,33 @@ class IndecisionApp extends Component{
     constructor(props){
         super(props);
         this.state = {
-            tasks : ['hello']
+            tasks : []
         }
         this.handleChooseTask=this.handleChooseTask.bind(this);
         this.handleDeleteTasks =this.handleDeleteTasks.bind(this);
         this.handleAddTask = this.handleAddTask.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
     }
+    componentDidMount(){
 
+        try {
+            const json = localStorage.getItem('tasks');
+            const tasks = JSON.parse(json);
+            if(tasks){
+                this.setState(() => ({ tasks }));
+            }
+        } catch(e){
+            // do nothing at all!
+        }
+        
+    }
+    componentDidUpdate(prevProps,prevState){
+        if( prevState.tasks.length !== this.state.tasks.length){
+            const json = JSON.stringify(this.state.tasks);
+            localStorage.setItem('tasks',json);
+        }
+
+    }
     handleChooseTask(){
         console.log(this.state.tasks);
         const randomTask = Math.floor(Math.random()*this.state.tasks.length);
@@ -47,6 +66,7 @@ class IndecisionApp extends Component{
                 tasks: prevState.tasks.concat(task)
             }
         })
+
     }
 
     render(){
@@ -60,6 +80,7 @@ class IndecisionApp extends Component{
                     task ="Delete Tasks"
                     handleTask = {this.handleDeleteTasks}
                 />
+                {this.state.tasks.length === 0 && <p>Please add a task to get start</p>}
                 <Tasks 
                     tasks={this.state.tasks} 
                     handleDeleteTask= {this.handleDeleteTask} 

@@ -16,6 +16,10 @@ class AddTask extends Component {
 
         this.setState(()=>({error}));
 
+        if(!error){
+            e.target.elements.task.value = '';
+        }
+
 }
     render(){
         return(
