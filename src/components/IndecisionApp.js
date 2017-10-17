@@ -2,17 +2,20 @@ import React, {Component} from 'react';
 import Action from './Action'
 import AddTask from './AddTask'
 import Tasks from './Tasks'
+import TaskModal from './TaskModal'
 
 class IndecisionApp extends Component{
     constructor(props){
         super(props);
         this.state = {
-            tasks : []
+            tasks : [],
+            selectedTask: undefined
         }
         this.handleChooseTask=this.handleChooseTask.bind(this);
         this.handleDeleteTasks =this.handleDeleteTasks.bind(this);
         this.handleAddTask = this.handleAddTask.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
+        this.clearSelectedTask = this.clearSelectedTask.bind(this);
     }
     componentDidMount(){
 
@@ -37,7 +40,9 @@ class IndecisionApp extends Component{
     handleChooseTask(){
         console.log(this.state.tasks);
         const randomTask = Math.floor(Math.random()*this.state.tasks.length);
-        return alert(this.state.tasks[randomTask])
+            this.setState(()=>{
+                return {selectedTask: this.state.tasks[randomTask]}
+        })
 
     }
 
@@ -66,7 +71,13 @@ class IndecisionApp extends Component{
                 tasks: prevState.tasks.concat(task)
             }
         })
+    }
 
+    clearSelectedTask(){
+        console.log('test')
+        this.setState(()=>{
+            return {selectedTask: undefined}
+        })
     }
 
     render(){
@@ -86,7 +97,7 @@ class IndecisionApp extends Component{
                     handleDeleteTask= {this.handleDeleteTask} 
                 />
                 <AddTask handleAddTask={this.handleAddTask} />
-                
+                <TaskModal clearSelectedTask={this.clearSelectedTask} selectedTask ={this.state.selectedTask}/>
             </div>
         );
     }
