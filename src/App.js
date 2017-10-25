@@ -1,6 +1,7 @@
+// stateless functional components
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import IndecisionApp from './components/IndecisionApp'
 
 class App extends Component {

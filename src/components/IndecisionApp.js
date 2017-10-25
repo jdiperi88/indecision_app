@@ -3,6 +3,7 @@ import Action from './Action'
 import AddTask from './AddTask'
 import Tasks from './Tasks'
 import TaskModal from './TaskModal'
+import Header from './Header';
 
 class IndecisionApp extends Component{
     constructor(props){
@@ -74,7 +75,6 @@ class IndecisionApp extends Component{
     }
 
     clearSelectedTask(){
-        console.log('test')
         this.setState(()=>{
             return {selectedTask: undefined}
         })
@@ -83,6 +83,7 @@ class IndecisionApp extends Component{
     render(){
         return(
             <div> 
+                <Header />
                 <Action 
                     task ="Choose Task"
                     handleTask = {this.handleChooseTask} 
